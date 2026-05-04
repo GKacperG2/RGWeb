@@ -1,0 +1,19 @@
+{
+  "images": [
+    { "src": "/images/balustrady-szklane.jpg", "alt": "Balustrady szklane – realizacja usługi", "category": "balustrady" },
+    { "src": "/images/real-balustrady-01.jpg", "alt": "Balustrady szklane – realizacja nr 1", "category": "balustrady" },
+    { "src": "/images/real-balustrady-02.jpg", "alt": "Balustrady szklane – realizacja nr 2", "category": "balustrady" },
+    { "src": "/images/drzwi-szklane.jpg", "alt": "Drzwi szklane – realizacja usługi", "category": "drzwi" },
+    { "src": "/images/daszki-szklane.jpeg", "alt": "Daszki szklane – realizacja usługi", "category": "daszki" },
+    { "src": "/images/kabiny-prysznicowe.jpg", "alt": "Kabiny prysznicowe na wymiar", "category": "kabiny" },
+    { "src": "/images/real-fb-01.jpg", "alt": "Kabina prysznicowa – realizacja", "category": "kabiny" },
+    { "src": "/images/real-fb-02.jpg", "alt": "Kabina prysznicowa – montaż", "category": "kabiny" },
+    { "src": "/images/lacobel-panele.jpg", "alt": "Panele Lacobel – kuchnia", "category": "lacobel" },
+    { "src": "/images/szklo-dekor.png", "alt": "Szkło dekoracyjne – panele", "category": "lacobel" },
+    { "src": "/images/scianki-dzialowe.jpg", "alt": "Szklane ścianki działowe", "category": "scianki" },
+    { "src": "/images/fototapety.jpg", "alt": "Fototapety w szkle", "category": "fototapety" },
+    { "src": "/images/fazowanie.jpg", "alt": "Fazowanie i szlifowanie szkła", "category": "inne" },
+    { "src": "/images/hartowanie.jpg", "alt": "Hartowanie szkła", "category": "inne" },
+    { "src": "/images/szklo-dekor2.png", "alt": "Szkło hartowane – produkty", "category": "inne" }
+  ]
+}

@@ -1,0 +1,143 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+locale: pl
+
+collections:
+  - name: settings
+    label: "Ustawienia strony"
+    files:
+      - name: general
+        label: "Ogólne ustawienia"
+        file: content/settings/general.json
+        format: json
+        fields:
+          - label: "Telefon"
+            name: phone
+            widget: string
+            hint: "Np. 604 595 378"
+          - label: "Telefon (link href)"
+            name: phone_href
+            widget: string
+            hint: "Np. +48604595378 (bez spacji)"
+          - label: "Email"
+            name: email
+            widget: string
+          - label: "Adres"
+            name: address
+            widget: string
+          - label: "NIP"
+            name: nip
+            widget: string
+          - label: "Rok założenia firmy"
+            name: founded_year
+            widget: string
+          - label: "Link do Facebooka"
+            name: facebook_url
+            widget: string
+          - label: "Link do opinii Google"
+            name: google_reviews_url
+            widget: string
+          - label: "Tytuł na stronie głównej (hero)"
+            name: hero_title
+            widget: string
+          - label: "Opis na stronie głównej (hero)"
+            name: hero_subtitle
+            widget: text
+          - label: "Zdjęcie główne (hero)"
+            name: hero_image
+            widget: image
+          - label: "Opis firmy (stopka)"
+            name: about_text
+            widget: text
+
+  - name: services
+    label: "Usługi"
+    label_singular: "Usługa"
+    folder: content/services
+    format: json
+    create: false
+    delete: false
+    identifier_field: name
+    fields:
+      - label: "Nazwa usługi"
+        name: name
+        widget: string
+      - label: "Kolejność wyświetlania"
+        name: order
+        widget: number
+        value_type: int
+        min: 1
+        max: 20
+      - label: "Krótki opis (karta)"
+        name: short_description
+        widget: string
+        hint: "1-2 zdania, widoczne na karcie usługi"
+      - label: "Pełny opis (podstrona)"
+        name: full_description
+        widget: text
+        hint: "Szczegółowy opis usługi"
+      - label: "Cechy i zalety"
+        name: features
+        widget: list
+        hint: "Kliknij 'Dodaj' aby dodać nową cechę"
+        field:
+          label: "Cecha"
+          name: item
+          widget: string
+      - label: "Zdjęcie główne"
+        name: image
+        widget: image
+      - label: "SEO – tytuł strony"
+        name: seo_title
+        widget: string
+        hint: "Tytuł wyświetlany w Google. Max 60 znaków."
+      - label: "SEO – opis (meta description)"
+        name: seo_description
+        widget: text
+        hint: "Opis wyświetlany w Google. Max 160 znaków."
+
+  - name: gallery
+    label: "Galeria realizacji"
+    files:
+      - name: images
+        label: "Zdjęcia galerii"
+        file: content/gallery/images.json
+        format: json
+        fields:
+          - label: "Zdjęcia"
+            name: images
+            widget: list
+            label_singular: "Zdjęcie"
+            fields:
+              - label: "Zdjęcie"
+                name: src
+                widget: image
+              - label: "Opis zdjęcia (alt)"
+                name: alt
+                widget: string
+                hint: "Krótki opis tego co widać na zdjęciu"
+              - label: "Kategoria"
+                name: category
+                widget: select
+                options:
+                  - label: "Balustrady szklane"
+                    value: "balustrady"
+                  - label: "Drzwi szklane"
+                    value: "drzwi"
+                  - label: "Daszki szklane"
+                    value: "daszki"
+                  - label: "Kabiny prysznicowe"
+                    value: "kabiny"
+                  - label: "Lacobel / Panele"
+                    value: "lacobel"
+                  - label: "Ścianki działowe"
+                    value: "scianki"
+                  - label: "Fototapety w szkle"
+                    value: "fototapety"
+                  - label: "Inne"
+                    value: "inne"
