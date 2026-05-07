@@ -1,44 +1,27 @@
 /**
  * Cloudinary image optimization helper.
  *
- * Uses Cloudinary's "fetch" mode — any image URL (local or external)
- * gets proxied through Cloudinary CDN with automatic:
- *   - WebP/AVIF conversion (f_auto)
- *   - Quality optimization (q_auto)
- *   - Responsive resizing (w_XXX)
- *   - Lazy CDN caching worldwide
+ * Strategy:
+ * - Images uploaded via Decap CMS Cloudinary widget → already Cloudinary URLs
+ *   → we inject f_auto,q_auto,w_XXX transformations
+ * - Local images (/images/...) → served directly (no Cloudinary proxy)
+ *   → these work on any domain without configuration
  *
- * For images uploaded via Decap CMS Cloudinary widget,
- * URLs are already Cloudinary URLs — we just ensure transformations are applied.
+ * When the site is on its final domain (rozyckiglass.pl), you can enable
+ * fetch mode for local images too by setting NEXT_PUBLIC_SITE_URL env var.
  *
- * Free tier: 25GB storage + 25GB bandwidth/month (plenty for small business)
+ * Free tier: 25GB storage + 25GB bandwidth/month
  */
 
-// Set your Cloudinary cloud name here after creating account
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || ""
-
-const SITE_URL = "https://rozyckiglass.pl"
-
-/**
- * Check if Cloudinary is configured
- */
-export function isCloudinaryConfigured(): boolean {
-  return CLOUD_NAME.length > 0
-}
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || ""
 
 /**
- * Optimize any image URL through Cloudinary fetch CDN.
+ * Optimize image URL.
  *
- * @param src - Image source (can be /images/..., https://res.cloudinary.com/..., or full URL)
- * @param options - Width and quality settings
- * @returns Optimized Cloudinary URL, or original src if Cloudinary not configured
- *
- * @example
- * optimizeImage("/images/hero.jpg", { width: 1200 })
- * // → "https://res.cloudinary.com/xxx/image/fetch/f_auto,q_auto,w_1200/https://rozyckiglass.pl/images/hero.jpg"
- *
- * optimizeImage("https://res.cloudinary.com/xxx/image/upload/v123/photo.jpg", { width: 800 })
- * // → "https://res.cloudinary.com/xxx/image/upload/f_auto,q_auto,w_800/v123/photo.jpg"
+ * - Cloudinary upload URLs → add transformations (f_auto, q_auto, w_XXX)
+ * - Local /images/ paths → returned as-is (unless SITE_URL is set for fetch mode)
+ * - External URLs → returned as-is
  */
 export function optimizeImage(
   src: string,
@@ -53,18 +36,19 @@ export function optimizeImage(
   if (width) transforms.push(`w_${width}`)
   const transformStr = transforms.join(",")
 
-  // Already a Cloudinary upload URL — inject transformations
+  // Already a Cloudinary upload URL → inject transformations
   if (src.includes("res.cloudinary.com") && src.includes("/upload/")) {
     return src.replace("/upload/", `/upload/${transformStr}/`)
   }
 
-  // Local path → convert to full URL for fetch mode
-  let fetchUrl = src
-  if (src.startsWith("/")) {
-    fetchUrl = `${SITE_URL}${src}`
+  // Local path — only use fetch mode if SITE_URL is configured
+  // (means the site is live on its final domain)
+  if (src.startsWith("/") && SITE_URL) {
+    return `https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/${transformStr}/${SITE_URL}${src}`
   }
 
-  return `https://res.cloudinary.com/${CLOUD_NAME}/image/fetch/${transformStr}/${fetchUrl}`
+  // Otherwise return original (local images served directly)
+  return src
 }
 
 /**
