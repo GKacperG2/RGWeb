@@ -3,6 +3,7 @@
 import { useEffect, useCallback } from "react"
 import Image from "next/image"
 import type { GalleryImage } from "@/lib/types"
+import { optimizeImage } from "@/lib/cloudinary"
 
 interface LightboxProps {
   images: GalleryImage[]
@@ -69,7 +70,7 @@ export default function Lightbox({
       >
         <div className="relative w-full" style={{ maxHeight: "75vh" }}>
           <img
-            src={current.src}
+            src={optimizeImage(current.src, { width: 1600 })}
             alt={current.alt}
             className="w-full h-full object-contain rounded-xl"
             style={{ maxHeight: "75vh" }}

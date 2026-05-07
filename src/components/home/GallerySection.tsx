@@ -4,6 +4,7 @@ import { useState, useCallback } from "react"
 import type { GalleryImage } from "@/lib/types"
 import { GALLERY_CATEGORIES } from "@/lib/constants"
 import Lightbox from "@/components/ui/Lightbox"
+import { optimizeImage } from "@/lib/cloudinary"
 
 interface GallerySectionProps {
   images: GalleryImage[]
@@ -121,7 +122,7 @@ export default function GallerySection({ images }: GallerySectionProps) {
               >
                 {/* Image */}
                 <img
-                  src={img.src}
+                  src={optimizeImage(img.src, { width: 600 })}
                   alt={img.alt}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   loading="lazy"

@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Service } from "@/lib/types"
 import { ServiceJsonLd } from "@/components/seo/JsonLd"
 import { PHONE_HREF } from "@/lib/constants"
+import { optimizeImage } from "@/lib/cloudinary"
 
 interface ServiceDetailProps {
   service: Service
@@ -17,7 +18,7 @@ export default function ServiceDetail({ service, related }: ServiceDetailProps) 
       {/* Hero banner */}
       <section className="relative h-64 md:h-80 overflow-hidden">
         <Image
-          src={service.image}
+          src={optimizeImage(service.image, { width: 1400 })}
           alt={service.name}
           fill
           className="object-cover"
@@ -150,7 +151,7 @@ export default function ServiceDetail({ service, related }: ServiceDetailProps) 
                   >
                     <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
                       <img
-                        src={s.image}
+                        src={optimizeImage(s.image, { width: 200 })}
                         alt={s.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"

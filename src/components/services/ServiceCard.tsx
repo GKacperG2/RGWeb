@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import type { Service } from "@/lib/types"
+import { optimizeImage } from "@/lib/cloudinary"
 
 interface ServiceCardProps {
   service: Service
@@ -40,7 +41,7 @@ export default function ServiceCard({
     >
       {/* Image */}
       <Image
-        src={service.image}
+        src={optimizeImage(service.image, { width: isFeatured ? 1200 : 800 })}
         alt={service.name}
         fill
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
