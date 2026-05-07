@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { PHONE, PHONE_HREF, EMAIL, ADDRESS } from "@/lib/constants"
 import SectionHeader from "@/components/ui/SectionHeader"
 
@@ -17,8 +18,8 @@ export default function ContactSection({ mapsEmbed }: ContactSectionProps) {
     {
       icon: "mail",
       label: "Email",
-      value: EMAIL,
-      href: `mailto:${EMAIL}`,
+      value: "Napisz wiadomość",
+      href: "/kontakt/",
       hint: "Odpowiadamy w ciągu 24h",
     },
     {

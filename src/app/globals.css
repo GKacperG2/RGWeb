@@ -137,3 +137,12 @@ body {
 ::-webkit-scrollbar-track { background: #0d0b09; }
 ::-webkit-scrollbar-thumb { background: #413f3c; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ── Hide scrollbar for filter pills ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
