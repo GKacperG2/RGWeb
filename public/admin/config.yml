@@ -11,7 +11,7 @@ media_library:
   output_filename_only: false
   config:
     cloud_name: dm6vgcqbh
-    api_key: B2XHrY_DAK6Spb0QnI_6guBEk20
+    api_key: "327941571622799"
     default_transformations:
       - - fetch_format: auto
           quality: auto
