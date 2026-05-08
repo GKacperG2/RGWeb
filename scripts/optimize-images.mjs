@@ -16,7 +16,7 @@ import { join, extname } from "path"
 
 const IMAGES_DIR = "out/images"
 const MAX_WIDTH = 1600
-const JPEG_QUALITY = 55
+const JPEG_QUALITY = 78
 const PNG_COMPRESSION = 9
 
 async function optimizeImages() {
@@ -70,7 +70,7 @@ async function optimizeImages() {
         pipeline = pipeline.png({
           compressionLevel: PNG_COMPRESSION,
           palette: true,
-          quality: 60,
+          quality: 80,
           effort: 10,
         })
       } else if (ext === ".webp") {
