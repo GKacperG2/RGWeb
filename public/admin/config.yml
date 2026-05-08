@@ -2,19 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-# Obrazki — Cloudinary (auto-optymalizacja: WebP, kompresja, CDN)
-# Fallback na lokalne /images jeśli Cloudinary nie skonfigurowane
 media_folder: public/images
 public_folder: /images
-media_library:
-  name: cloudinary
-  output_filename_only: false
-  config:
-    cloud_name: dm6vgcqbh
-    api_key: "327941571622799"
-    default_transformations:
-      - - fetch_format: auto
-          quality: auto
 
 locale: pl
 
