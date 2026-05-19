@@ -13,9 +13,8 @@
  */
 
 import sharp from "sharp"
-import { readdir, stat, readFile, writeFile, rename, unlink } from "fs/promises"
+import { readdir, stat, readFile, writeFile, unlink } from "fs/promises"
 import { join, extname, basename } from "path"
-import { glob } from "fs/promises"
 
 const IMAGES_DIR = "out/images"
 const MAX_WIDTH = 1600
@@ -90,8 +89,13 @@ async function optimizeImages() {
           quality: 80,
           effort: 10,
         })
-      } else if (ext === ".webp" || ext === ".avif") {
+      } else if (ext === ".webp") {
         pipeline = pipeline.webp({
+          quality: 75,
+          effort: 6,
+        })
+      } else if (ext === ".avif") {
+        pipeline = pipeline.avif({
           quality: 75,
           effort: 6,
         })
