@@ -84,6 +84,11 @@
       "src": "/images/images.jfif",
       "alt": "pies",
       "category": "balustrady"
+    },
+    {
+      "src": "/images/s003.png",
+      "alt": "Kabina prysznicowa ",
+      "category": "drzwi"
     }
   ]
 }
